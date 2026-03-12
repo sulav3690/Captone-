@@ -1,11 +1,13 @@
+"use client";
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Card from '../components/ui/Card';
-import Input from '../components/ui/Input';
-import Button from '../components/ui/Button';
+import { useRouter } from 'next/navigation';
+import Card from '../../components/ui/Card';
+import Input from '../../components/ui/Input';
+import Button from '../../components/ui/Button';
 
 const Register = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div className="min-h-screen bg-bg-grey flex items-center justify-center p-6">
@@ -38,8 +40,8 @@ const Register = () => {
           </div>
 
           <div className="flex gap-4">
-            <Button className="flex-1" onClick={() => navigate('/dashboard')}>Create Account</Button>
-            <Button variant="secondary" className="flex-1" onClick={() => navigate('/login')}>Back to Login</Button>
+            <Button className="flex-1" onClick={() => router.push('/dashboard')}>Create Account</Button>
+            <Button variant="secondary" className="flex-1" onClick={() => router.push('/login')}>Back to Login</Button>
           </div>
         </div>
       </Card>

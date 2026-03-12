@@ -1,11 +1,13 @@
+"use client";
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout';
-import Card from '../components/ui/Card';
-import Button from '../components/ui/Button';
+import { useRouter } from 'next/navigation';
+import Layout from '../../components/Layout';
+import Card from '../../components/ui/Card';
+import Button from '../../components/ui/Button';
 
 const Result = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const LegendItem = ({ colorClass, label }) => (
     <div className="flex items-center gap-2">
@@ -72,7 +74,7 @@ const Result = () => {
             </p>
           </Card>
 
-          <Button className="w-full py-4 text-lg font-bold" onClick={() => navigate('/report')}>
+          <Button className="w-full py-4 text-lg font-bold" onClick={() => router.push('/report')}>
             View Detailed Report
           </Button>
         </div>

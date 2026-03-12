@@ -1,13 +1,15 @@
+"use client";
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout';
-import PlanCard from '../components/ui/PlanCard';
+import { useRouter } from 'next/navigation';
+import Layout from '../../components/Layout';
+import PlanCard from '../../components/ui/PlanCard';
 
 const Subscription = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleSubscribe = (plan) => {
-    navigate('/payment', { state: { plan } });
+    router.push(`/payment?planName=${encodeURIComponent(plan.name)}&planPrice=${encodeURIComponent(plan.price)}`);
   };
 
   return (

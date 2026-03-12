@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { ShieldCheck, CreditCard as CardIcon, Wallet, Landmark } from 'lucide-react';
-import Layout from '../components/Layout';
-import Card from '../components/ui/Card';
-import Input from '../components/ui/Input';
-import Button from '../components/ui/Button';
+"use client";
 
-const Payment = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const plan = location.state?.plan || { name: 'Monthly Plan', price: '$20' };
+import React, { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { ShieldCheck, CreditCard as CardIcon, Wallet, Landmark } from 'lucide-react';
+import Layout from '../../components/Layout';
+import Card from '../../components/ui/Card';
+import Input from '../../components/ui/Input';
+import Button from '../../components/ui/Button';
+
+const PaymentContent = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const plan = { name: searchParams.get('planName') || 'Monthly Plan', price: searchParams.get('planPrice') || '$20' };
   const [activeTab, setActiveTab] = useState('card');
 
   const tabs = [
@@ -20,7 +22,7 @@ const Payment = () => {
   ];
 
   return (
-    <Layout>
+    <>
       <h1 className="text-3xl font-bold text-gray-800 mb-10">Secure Checkout</h1>
 
       <div className="flex flex-col lg:flex-row gap-10">
@@ -32,7 +34,7 @@ const Payment = () => {
                 <h3 className="text-xl font-bold text-gray-800">{plan.name}</h3>
                 <p className="text-gray-500 font-medium">{plan.price}/month</p>
               </div>
-              <Button variant="outline" className="text-xs py-1 px-3" onClick={() => navigate('/subscription')}>Change</Button>
+              <Button variant="outline" className="text-xs py-1 px-3" onClick={() => router.push('/subscription')}>Change</Button>
             </div>
 
             <ul className="space-y-4 mb-8">
@@ -106,6 +108,16 @@ const Payment = () => {
           </Card>
         </div>
       </div>
+    </>
+  );
+};
+
+const Payment = () => {
+  return (
+    <Layout>
+      <React.Suspense fallback={<div className="p-10 text-center">Loading checkout...</div>}>
+        <PaymentContent />
+      </React.Suspense>
     </Layout>
   );
 };

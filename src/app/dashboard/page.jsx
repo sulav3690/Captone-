@@ -1,13 +1,15 @@
+"use client";
+
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { Upload } from 'lucide-react';
-import Layout from '../components/Layout';
-import Card from '../components/ui/Card';
-import Toggle from '../components/ui/Toggle';
-import Button from '../components/ui/Button';
+import Layout from '../../components/Layout';
+import Card from '../../components/ui/Card';
+import Toggle from '../../components/ui/Toggle';
+import Button from '../../components/ui/Button';
 
 const Detector = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [aiDetection, setAiDetection] = useState(true);
   const [misinformation, setMisinformation] = useState(true);
   const [text, setText] = useState('');
@@ -52,7 +54,7 @@ const Detector = () => {
         <div className="mt-10 flex justify-center">
           <Button
             className="px-12 py-4 text-lg font-bold shadow-lg shadow-primary-green/20"
-            onClick={() => navigate('/result')}
+            onClick={() => router.push('/result')}
           >
             Analyze Now
           </Button>

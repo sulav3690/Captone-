@@ -1,12 +1,14 @@
+"use client";
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout';
-import Card from '../components/ui/Card';
-import Button from '../components/ui/Button';
-import StatCard from '../components/ui/StatCard';
+import { useRouter } from 'next/navigation';
+import Layout from '../../components/Layout';
+import Card from '../../components/ui/Card';
+import Button from '../../components/ui/Button';
+import StatCard from '../../components/ui/StatCard';
 
 const Report = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <Layout>
@@ -60,7 +62,7 @@ const Report = () => {
             <Card className="bg-primary-green text-white flex flex-col items-center text-center py-10">
               <h3 className="text-xl font-bold mb-2">Upgrade to Pro</h3>
               <p className="text-white/80 text-sm mb-8 max-w-[200px]">Get access to advanced deepfake detection and API access.</p>
-              <Button className="w-full bg-white text-primary-green hover:bg-gray-100" onClick={() => navigate('/subscription')}>
+              <Button className="w-full bg-white text-primary-green hover:bg-gray-100" onClick={() => router.push('/subscription')}>
                 Upgrade Now
               </Button>
             </Card>

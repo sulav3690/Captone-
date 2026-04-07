@@ -1,52 +1,185 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Card from '../../components/ui/Card';
-import Input from '../../components/ui/Input';
-import Button from '../../components/ui/Button';
 
-const Register = () => {
+export default function Register() {
   const router = useRouter();
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+    fullName: '',
+    email: '',
+    phone: '',
+    role: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleCreateAccount = (e) => {
+    e.preventDefault();
+    router.push('/login');
+  };
 
   return (
-    <div className="min-h-screen bg-bg-grey flex items-center justify-center p-6">
-      <Card className="w-full max-w-[600px] p-8">
-        <div className="space-y-8">
-          {/* Section 1: Basic Information */}
-          <div className="border-2 border-blue-100 rounded-xl p-6">
-            <h2 className="text-lg font-bold text-gray-800 mb-4">Basic Information</h2>
+    <div className="min-h-screen flex items-center justify-center bg-[#F6F8F9] py-10 px-4">
+      {/* Outer card */}
+      <div className="w-full max-w-xl bg-white rounded-2xl shadow-md overflow-hidden">
+
+        {/* Teal Header */}
+        <div className="bg-[#5A6F78] px-8 py-5">
+          <h1 className="text-white text-xl font-bold">Welcome Administrator!</h1>
+        </div>
+
+        <div className="p-8 flex flex-col gap-6">
+
+          {/* Basic Information Card */}
+          <div className="bg-[#D6E8F5] rounded-2xl p-6 flex flex-col gap-4">
+            <h2 className="text-base font-bold text-gray-800 text-center">Basic Information</h2>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Input label="Username" placeholder="Choose a username" />
-              <Input label="Password" type="password" placeholder="Choose a password" />
-              <div className="md:col-span-2">
-                <Input label="Full Name" placeholder="Your full name" />
+              {/* Username */}
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-semibold text-gray-700">
+                  Username <span className="text-red-500">*</span>
+                </label>
+                <input
+                  id="reg-username"
+                  name="username"
+                  type="text"
+                  required
+                  placeholder="Enter unique username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1FA463]/50 transition"
+                />
               </div>
-              <Input label="Email" type="email" placeholder="your@email.com" />
-              <Input label="Phone Number" placeholder="+1 (555) 000-0000" />
+
+              {/* Password */}
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-semibold text-gray-700">
+                  Password <span className="text-red-500">*</span>
+                </label>
+                <input
+                  id="reg-password"
+                  name="password"
+                  type="password"
+                  required
+                  placeholder="Enter secure password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1FA463]/50 transition"
+                />
+              </div>
+            </div>
+
+            {/* Full Name */}
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-semibold text-gray-700">
+                Full Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="reg-fullname"
+                name="fullName"
+                type="text"
+                required
+                placeholder="Enter your complete name"
+                value={formData.fullName}
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1FA463]/50 transition"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Email */}
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-semibold text-gray-700">
+                  Email <span className="text-red-500">*</span>
+                </label>
+                <input
+                  id="reg-email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="your.email@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1FA463]/50 transition"
+                />
+              </div>
+
+              {/* Phone */}
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-semibold text-gray-700">
+                  Phone Number <span className="text-red-500">*</span>
+                </label>
+                <input
+                  id="reg-phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  placeholder="+977-XXXXXXXX"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1FA463]/50 transition"
+                />
+              </div>
             </div>
           </div>
 
-          {/* Section 2: Account Type */}
-          <div className="border-2 border-orange-100 rounded-xl p-6">
-            <h2 className="text-lg font-bold text-gray-800 mb-4">Account Type</h2>
-            <div className="w-full">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Select Role</label>
-              <select className="w-full px-4 py-2 rounded-lg border border-border-grey focus:ring-2 focus:ring-primary-green focus:border-transparent outline-none transition-all">
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-              </select>
+          {/* Account Type Card */}
+          <div className="bg-[#FEFAE0] border border-[#E9D96E] rounded-2xl p-6 flex flex-col gap-3">
+            <h2 className="text-base font-bold text-[#1FA463] text-center">Account Type</h2>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-semibold text-gray-700">
+                Select Your Role <span className="text-red-500">*</span>
+              </label>
+              <div className="relative">
+                <select
+                  id="reg-role"
+                  name="role"
+                  required
+                  value={formData.role}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 bg-[#E8E8E8] text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#1FA463]/50 transition"
+                >
+                  <option value="" disabled>Choose your account type</option>
+                  <option value="student">Student</option>
+                  <option value="teacher">Teacher</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500">
+                  ▼
+                </div>
+              </div>
+              <p className="text-xs text-gray-500 italic text-center">
+                Choose &apos;Student&apos; or &apos;Teacher&apos;
+              </p>
             </div>
           </div>
 
-          <div className="flex gap-4">
-            <Button className="flex-1" onClick={() => router.push('/dashboard')}>Create Account</Button>
-            <Button variant="secondary" className="flex-1" onClick={() => router.push('/login')}>Back to Login</Button>
+          {/* Action Buttons */}
+          <div className="flex gap-3 justify-center">
+            <button
+              id="reg-submit"
+              type="submit"
+              onClick={handleCreateAccount}
+              className="px-8 py-2.5 rounded-full bg-[#1FA463] hover:bg-[#178a52] text-white font-bold transition-all duration-200 shadow-sm hover:shadow-md"
+            >
+              Create Account
+            </button>
+            <button
+              id="reg-back"
+              type="button"
+              onClick={() => router.push('/login')}
+              className="px-8 py-2.5 rounded-full bg-[#5A6F78] hover:bg-[#4a5c64] text-white font-bold transition-all duration-200 shadow-sm hover:shadow-md"
+            >
+              Back to Login
+            </button>
           </div>
         </div>
-      </Card>
+      </div>
     </div>
   );
-};
-
-export default Register;
+}

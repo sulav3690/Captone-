@@ -62,8 +62,8 @@ const Report = () => {
             <Card className="bg-primary-green text-white flex flex-col items-center text-center py-10">
               <h3 className="text-xl font-bold mb-2">Upgrade to Pro</h3>
               <p className="text-white/80 text-sm mb-8 max-w-[200px]">Get access to advanced deepfake detection and API access.</p>
-              <Button className="w-full bg-white text-primary-green hover:bg-gray-100" onClick={() => router.push('/subscription')}>
-                Upgrade Now
+              <Button className="w-full bg-white hover:bg-gray-100" onClick={() => router.push('/subscription')}>
+                <span className="text-blue-600">Upgrade Now</span>
               </Button>
             </Card>
           </div>

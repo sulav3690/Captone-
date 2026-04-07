@@ -9,14 +9,14 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <nav className="h-[70px] bg-header-grey flex items-center justify-between px-10 text-white sticky top-0 z-50">
+    <nav className="h-[70px] bg-[#5A6F78] flex items-center justify-between px-10 text-white sticky top-0 z-50 shadow-md">
       <div className="flex items-center gap-4">
         <button onClick={() => router.back()} className="p-1 hover:bg-white/10 rounded-full transition-colors">
           <ArrowLeft size={20} />
         </button>
         <div>
           <h1 className="font-bold text-lg leading-tight">Welcome Administrator!</h1>
-          <p className="text-xs text-white/70 font-light">Dashboard Info</p>
+          <p className="text-xs text-white/70 font-light">VeritasAI Dashboard</p>
         </div>
       </div>
 

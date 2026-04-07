@@ -1,7 +1,7 @@
 import '../index.css';
 
 export const metadata = {
-  title: 'TruthLens | AI Content & Misinformation Detector',
+  title: 'VeritasAI | AI Content & Misinformation Detector',
   description: 'AI detection software',
 };
 
